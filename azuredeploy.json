@@ -33,7 +33,8 @@
             "allowedValues": [
                 "small",
                 "medium",
-                "large"
+                "large",
+                "xlarge"
             ],
             "defaultValue": "small",
             "metadata": {
@@ -225,6 +226,11 @@
             "vmSize": "Standard_DS4_v2",
             "numberOfExtraServers" : 2,
             "infrastructureTemplate" : "[concat(variables('baseTemplateUri'), 'infra/infrastructure-large.json')]"
+        },
+        "deploymentSize-xlarge": {
+            "vmSize": "Standard_DS4_v2",
+            "numberOfExtraServers" : 2,
+            "infrastructureTemplate" : "[concat(variables('baseTemplateUri'), 'infra/infrastructure-xlarge.json')]"
         },
         "azureSqlSize": "[variables(concat('azureSqlSize', parameters('sql')))]",
         "azureSqlSizenone": {
