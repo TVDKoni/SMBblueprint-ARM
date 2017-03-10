@@ -16,11 +16,10 @@
     }
   },
   "variables": {
-    "sqlserverName": "[concat('sqlserver', uniqueString(resourceGroup().id))]"
   },
   "resources": [
     {
-      "name": "[variables('sqlserverName')]",
+      "name": "[parameters('sql').serverName]",
       "type": "Microsoft.Sql/servers",
       "location": "[resourceGroup().location]",
       "tags": {
