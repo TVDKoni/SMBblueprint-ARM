@@ -226,7 +226,7 @@
 								"OMSWorkSpaceId": "[reference(resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName')), '2015-03-20').customerId]"
 							},
 							"configurationData": {
-								"url": "[concat(variables('baseTemplateUri'),'dsc', '/DSC_Data_SMB_',parameters('vm').dscProfile,'.psd1')]"
+								"url": "[concat(variables('baseTemplateUri'),'dsc', '/DSC_Data_SMB.psd1')]"
 							}
 						},
 						"protectedSettings": {

@@ -3,10 +3,10 @@
   "contentVersion": "1.0.0.0",
   "parameters": {     
       "customerName": {
-        "value": "smb"
+        "value": "flxd"
       },
       "customerSize" : {
-        "value" : "large"
+        "value" : "fsmall"
       },
       "sql" : {
         "value": "small"

@@ -34,7 +34,9 @@
 					"small",
 					"medium",
 					"large",
-					"xlarge"
+					"fsmall",
+					"fmedium",
+					"flarge"
 				],
 				"defaultValue": "small",
 				"metadata": {
@@ -271,12 +273,28 @@
 					"[concat(variables('NamingPrefix'),'serv003')]": "RDS-Session"
 				}
 			},
-			"deploymentSize-xlarge": {
+			"deploymentSize-fsmall": {
+				"vmSize": "Standard_DS1_v2",
+				"numberOfExtraServers": 0,
+				"infrastructureTemplate": "[concat(variables('baseTemplateUri'), 'infra/infrastructure-fsmall.json')]",
+				"infrastructureRoles": {
+					"[concat(variables('NamingPrefix'),'serv001')]": "DC-Primary"
+				}
+			},
+			"deploymentSize-fmedium": {
+				"vmSize": "Standard_DS2_v2",
+				"numberOfExtraServers": 0,
+				"infrastructureTemplate": "[concat(variables('baseTemplateUri'), 'infra/infrastructure-fmedium.json')]",
+				"infrastructureRoles": {
+					"[concat(variables('NamingPrefix'),'serv001')]": "DC-Primary"
+				}
+			},
+			"deploymentSize-flarge": {
 				"vmSize": "Standard_DS4_v2",
 				"numberOfExtraServers": 0,
-				"infrastructureTemplate": "[concat(variables('baseTemplateUri'), 'infra/infrastructure-xlarge.json')]",
+				"infrastructureTemplate": "[concat(variables('baseTemplateUri'), 'infra/infrastructure-flarge.json')]",
 				"infrastructureRoles": {
-					"[concat(variables('NamingPrefix'),'serv001')]": "DC-Primary,RDS-All"
+					"[concat(variables('NamingPrefix'),'serv001')]": "DC-Primary"
 				}
 			},
 			"azureSqlSize": "[variables(concat('azureSqlSize-', parameters('sql')))]",
