@@ -41,7 +41,7 @@
           },
           "apiVersion": "2014-04-01-preview",
           "dependsOn": [
-            "[variables('sqlserverName')]"
+            "[parameters('sql').serverName]"
           ],
           "properties": {
             "edition": "[parameters('sql').edition]",
@@ -54,7 +54,7 @@
           "type": "firewallrules",
           "apiVersion": "2014-04-01-preview",
           "dependsOn": [
-            "[variables('sqlserverName')]"
+            "[parameters('sql').serverName]"
           ],
           "location": "[resourceGroup().location]",
           "name": "AllowAllWindowsAzureIps",
