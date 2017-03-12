@@ -77,7 +77,8 @@
 							"storageType": "[parameters('deploymentSettings').storageType]",
 							"OS": "[parameters('deploymentSettings').OS]",
 							"rdsConnectionBroker":"[parameters('deploymentSettings').rdsConnectionBroker]",
-							"infrastructureRoles":"[parameters('deploymentSettings').infrastructureRoles[parameters('deploymentSettings').primaryVmName]]"
+							"infrastructureRoles":"[parameters('deploymentSettings').infrastructureRoles[parameters('deploymentSettings').primaryVmName]]",
+							"NamingPrefix":"[parameters('NamingPrefix')]"
 						}
 					},
 					"adminPassword": {
@@ -148,7 +149,8 @@
 							"storageType": "[parameters('deploymentSettings').storageType]",
 							"OS": "[parameters('deploymentSettings').OS]",
 							"rdsConnectionBroker":"[parameters('deploymentSettings').rdsConnectionBroker]",
-							"infrastructureRoles":"[parameters('deploymentSettings').infrastructureRoles[concat(parameters('NamingPrefix'),'serv00',copyIndex(2))]]"
+							"infrastructureRoles":"[parameters('deploymentSettings').infrastructureRoles[concat(parameters('NamingPrefix'),'serv00',copyIndex(2))]]",
+							"NamingPrefix":"[parameters('NamingPrefix')]"
 						}
 					},
 					"adminPassword": {

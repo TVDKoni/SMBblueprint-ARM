@@ -545,7 +545,8 @@
 							"storageType": "[parameters('storageType')]",
 							"OS": "[variables('deploymentSettings').OS]",
 							"rdsConnectionBroker": "[variables('deploymentSettings').rdsConnectionBroker]",
-							"infrastructureRoles": "[variables('deploymentSettings').infrastructureRoles[concat(variables('NamingPrefix'),'serv00', add(variables('deploymentSettings').numberOfExtraServers, 2))]]"
+							"infrastructureRoles": "[variables('deploymentSettings').infrastructureRoles[concat(variables('NamingPrefix'),'serv00', add(variables('deploymentSettings').numberOfExtraServers, 2))]]",
+							"NamingPrefix":"[variables('NamingPrefix')]"
 						}
 					},
 					"adminPassword": {
