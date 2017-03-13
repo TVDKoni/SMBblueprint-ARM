@@ -214,10 +214,10 @@
 								"function": "SMB"
 							},
 							"configurationArguments": {
+								"hostName": "[parameters('vm').name]",
 								"domainName": "[parameters('vm').domainName]",
 								"roleNames": "[parameters('vm').infrastructureRoles]",
 								"connectionBroker": "[parameters('vm').rdsConnectionBroker]",
-								"NodeName": "[parameters('vm').name]",
 								"OMSWorkSpaceId": "[reference(resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName')), '2015-03-20').customerId]"
 							},
 							"configurationData": {
