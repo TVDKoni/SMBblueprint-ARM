@@ -195,8 +195,7 @@
 						},
 						"protectedSettings": null
 					}
-				},
-				{
+				}, {
 					"type": "Microsoft.Compute/virtualMachines/extensions",
 					"name": "[concat(parameters('vm').name,'/dscDCConfiguration')]",
 					"apiVersion": "[variables('apiVersion').compute.virtualMachines]",
@@ -237,7 +236,6 @@
 								},
 								"OMSWorkSpaceKey": "[listKeys(resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName')), '2015-03-20').primarySharedKey]"
 							}
-
 						}
 					}
 				}

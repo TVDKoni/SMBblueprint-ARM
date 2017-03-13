@@ -72,8 +72,8 @@
 							"dscProfile": "[parameters('deploymentSettings').customerSize]",
 							"storageType": "[parameters('deploymentSettings').storageType]",
 							"OS": "[parameters('deploymentSettings').OS]",
-							"rdsConnectionBroker":"[parameters('deploymentSettings').rdsConnectionBroker]",
-							"infrastructureRoles":"[parameters('deploymentSettings').infrastructureRoles[parameters('deploymentSettings').primaryVmName]]"
+							"rdsConnectionBroker": "[parameters('deploymentSettings').rdsConnectionBroker]",
+							"infrastructureRoles": "[parameters('deploymentSettings').infrastructureRoles[parameters('deploymentSettings').primaryVmName]]"
 						}
 					},
 					"adminPassword": {

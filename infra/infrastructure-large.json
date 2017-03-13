@@ -76,8 +76,8 @@
 							"dscProfile": "[parameters('deploymentSettings').customerSize]",
 							"storageType": "[parameters('deploymentSettings').storageType]",
 							"OS": "[parameters('deploymentSettings').OS]",
-							"rdsConnectionBroker":"[parameters('deploymentSettings').rdsConnectionBroker]",
-							"infrastructureRoles":"[parameters('deploymentSettings').infrastructureRoles[parameters('deploymentSettings').primaryVmName]]"
+							"rdsConnectionBroker": "[parameters('deploymentSettings').rdsConnectionBroker]",
+							"infrastructureRoles": "[parameters('deploymentSettings').infrastructureRoles[parameters('deploymentSettings').primaryVmName]]"
 						}
 					},
 					"adminPassword": {
@@ -150,8 +150,8 @@
 							"dscProfile": "[parameters('deploymentSettings').customerSize]",
 							"storageType": "[parameters('deploymentSettings').storageType]",
 							"OS": "[parameters('deploymentSettings').OS]",
-							"rdsConnectionBroker":"[parameters('deploymentSettings').rdsConnectionBroker]",
-							"infrastructureRoles":"[parameters('deploymentSettings').infrastructureRoles[concat(parameters('NamingPrefix'),'serv00',copyIndex(2))]]"
+							"rdsConnectionBroker": "[parameters('deploymentSettings').rdsConnectionBroker]",
+							"infrastructureRoles": "[parameters('deploymentSettings').infrastructureRoles[concat(parameters('NamingPrefix'),'serv00',copyIndex(2))]]"
 						}
 					},
 					"adminPassword": {
@@ -231,9 +231,8 @@
 							"dscProfile": "[parameters('deploymentSettings').customerSize]",
 							"storageType": "[parameters('deploymentSettings').storageType]",
 							"OS": "[parameters('deploymentSettings').OS]",
-							"rdsConnectionBroker":"[parameters('deploymentSettings').rdsConnectionBroker]",
-							"infrastructureRoles":"[parameters('deploymentSettings').infrastructureRoles[variables('vmJumpbox').name]]"
-
+							"rdsConnectionBroker": "[parameters('deploymentSettings').rdsConnectionBroker]",
+							"infrastructureRoles": "[parameters('deploymentSettings').infrastructureRoles[variables('vmJumpbox').name]]"
 						}
 					},
 					"adminPassword": {
@@ -301,7 +300,6 @@
 				}
 			}
 		}
-
 	],
 	"outputs": {}
 }

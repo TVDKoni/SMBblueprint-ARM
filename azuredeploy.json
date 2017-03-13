@@ -117,7 +117,6 @@
 			"metadata": {
 				"description": "Wheter management services (OMS) are enabled or not "
 			}
-
 		},
 		"scheduleid01": {
 			"metadata": {
@@ -175,7 +174,6 @@
 			},
 			"type": "string",
 			"defaultValue": "flxd"
-
 		}
 	},
 	"variables": {
@@ -471,8 +469,10 @@
 					},
 					"region": {
 						"value": "[variables('omsSettings').region]"
+					},
+					"NamingPrefix": {
+						"value": "[variables('NamingPrefix')]"
 					}
-
 				}
 			}
 		}, {
