@@ -8,12 +8,10 @@ Param (
 	[string] $hostName = $env:COMPUTERNAME,
 
 	[parameter()]
-	[ValidateNotNullOrEmpty()]
-	[string] $roleNames,
+	[string] $roleNames = "",
 
 	[parameter()]
-	[ValidateNotNullOrEmpty()]
-	[string] $connectionBroker,
+	[string] $connectionBroker = "",
 
 	[parameter()]
 	[ValidateNotNullOrEmpty()]
