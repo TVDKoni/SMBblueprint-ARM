@@ -258,7 +258,14 @@
 			"infrastructureTemplate": "[concat(variables('baseTemplateUri'), 'infra/infrastructure-medium.json')]",
 			"infrastructureRoles": {
 				"[concat(variables('NamingPrefix'),'serv001')]": "DC-Primary,RDS-All",
-				"[concat(variables('NamingPrefix'),'serv002')]": "RDS-Session"
+				"[concat(variables('NamingPrefix'),'serv002')]": "RDS-Session",
+				"[concat(variables('NamingPrefix'),'serv003')]": "",
+				"[concat(variables('NamingPrefix'),'serv004')]": "",
+				"[concat(variables('NamingPrefix'),'serv005')]": "",
+				"[concat(variables('NamingPrefix'),'serv006')]": "",
+				"[concat(variables('NamingPrefix'),'serv007')]": "",
+				"[concat(variables('NamingPrefix'),'serv008')]": "",
+				"[concat(variables('NamingPrefix'),'serv009')]": ""
 			}
 		},
 		"deploymentSize-large": {
@@ -268,7 +275,13 @@
 			"infrastructureRoles": {
 				"[concat(variables('NamingPrefix'),'serv001')]": "DC-Primary,RDS-All",
 				"[concat(variables('NamingPrefix'),'serv002')]": "RDS-Session",
-				"[concat(variables('NamingPrefix'),'serv003')]": "RDS-Session"
+				"[concat(variables('NamingPrefix'),'serv003')]": "RDS-Session",
+				"[concat(variables('NamingPrefix'),'serv004')]": "",
+				"[concat(variables('NamingPrefix'),'serv005')]": "",
+				"[concat(variables('NamingPrefix'),'serv006')]": "",
+				"[concat(variables('NamingPrefix'),'serv007')]": "",
+				"[concat(variables('NamingPrefix'),'serv008')]": "",
+				"[concat(variables('NamingPrefix'),'serv009')]": ""
 			}
 		},
 		"deploymentSize-fsmall": {
@@ -276,7 +289,15 @@
 			"numberOfExtraServers": 0,
 			"infrastructureTemplate": "[concat(variables('baseTemplateUri'), 'infra/infrastructure-fsmall.json')]",
 			"infrastructureRoles": {
-				"[concat(variables('NamingPrefix'),'serv001')]": "DC-Primary"
+				"[concat(variables('NamingPrefix'),'serv001')]": "DC-Primary",
+				"[concat(variables('NamingPrefix'),'serv002')]": "",
+				"[concat(variables('NamingPrefix'),'serv003')]": "",
+				"[concat(variables('NamingPrefix'),'serv004')]": "",
+				"[concat(variables('NamingPrefix'),'serv005')]": "",
+				"[concat(variables('NamingPrefix'),'serv006')]": "",
+				"[concat(variables('NamingPrefix'),'serv007')]": "",
+				"[concat(variables('NamingPrefix'),'serv008')]": "",
+				"[concat(variables('NamingPrefix'),'serv009')]": ""
 			}
 		},
 		"deploymentSize-fmedium": {
@@ -284,7 +305,15 @@
 			"numberOfExtraServers": 0,
 			"infrastructureTemplate": "[concat(variables('baseTemplateUri'), 'infra/infrastructure-fmedium.json')]",
 			"infrastructureRoles": {
-				"[concat(variables('NamingPrefix'),'serv001')]": "DC-Primary"
+				"[concat(variables('NamingPrefix'),'serv001')]": "DC-Primary",
+				"[concat(variables('NamingPrefix'),'serv002')]": "",
+				"[concat(variables('NamingPrefix'),'serv003')]": "",
+				"[concat(variables('NamingPrefix'),'serv004')]": "",
+				"[concat(variables('NamingPrefix'),'serv005')]": "",
+				"[concat(variables('NamingPrefix'),'serv006')]": "",
+				"[concat(variables('NamingPrefix'),'serv007')]": "",
+				"[concat(variables('NamingPrefix'),'serv008')]": "",
+				"[concat(variables('NamingPrefix'),'serv009')]": ""
 			}
 		},
 		"deploymentSize-flarge": {
@@ -292,7 +321,15 @@
 			"numberOfExtraServers": 0,
 			"infrastructureTemplate": "[concat(variables('baseTemplateUri'), 'infra/infrastructure-flarge.json')]",
 			"infrastructureRoles": {
-				"[concat(variables('NamingPrefix'),'serv001')]": "DC-Primary"
+				"[concat(variables('NamingPrefix'),'serv001')]": "DC-Primary",
+				"[concat(variables('NamingPrefix'),'serv002')]": "",
+				"[concat(variables('NamingPrefix'),'serv003')]": "",
+				"[concat(variables('NamingPrefix'),'serv004')]": "",
+				"[concat(variables('NamingPrefix'),'serv005')]": "",
+				"[concat(variables('NamingPrefix'),'serv006')]": "",
+				"[concat(variables('NamingPrefix'),'serv007')]": "",
+				"[concat(variables('NamingPrefix'),'serv008')]": "",
+				"[concat(variables('NamingPrefix'),'serv009')]": ""
 			}
 		},
 		"azureSqlSize": "[variables(concat('azureSqlSize-', parameters('sql')))]",
@@ -476,7 +513,7 @@
 				}
 			}
 		}, {
-			"name": "InfrastructureDeployment",
+			"name": "infrastructureDeployment",
 			"type": "Microsoft.Resources/deployments",
 			"apiVersion": "2015-01-01",
 			"dependsOn": [
@@ -524,7 +561,7 @@
 			"dependsOn": [
 				"Microsoft.Resources/deployments/networkDeployment",
 				"Microsoft.Resources/deployments/omsWorkspaceDeployment",
-				"Microsoft.Resources/deployments/InfrastructureDeployment"
+				"Microsoft.Resources/deployments/infrastructureDeployment"
 			],
 			"properties": {
 				"mode": "Incremental",
