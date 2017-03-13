@@ -5,7 +5,7 @@
 
 Param (
 	[parameter()]
-	[string] $NodeName = $env:COMPUTERNAME,
+	[string] $hostName = $env:COMPUTERNAME,
 
 	[parameter()]
 	[ValidateNotNullOrEmpty()]
@@ -36,7 +36,7 @@ Import-DscResource -ModuleName PSDesiredStateConfiguration,xActiveDirectory,xCom
 $DependsOnAD = ""
 $DomainCred = new-object pscredential "$domainName\$($domainAdminCredentials.UserName)",$domainAdminCredentials.Password
 $OSVersion = new-object Version ((Get-CimInstance Win32_OperatingSystem).version)
-Node $NodeName {
+Node $AllNodes.NodeName {
 
 		LocalConfigurationManager
 		{
@@ -112,7 +112,7 @@ Node $NodeName {
 		{
 			xComputer DomainJoin
 			{
-				Name = $NodeName
+				Name = $hostName
 				DomainName = $DomainName
 				Credential = $DomainCred
 			}
@@ -239,8 +239,8 @@ Node $NodeName {
 			cRDSessionDeployment Deployment
 			{
 				ConnectionBroker     = $connectionBroker
-				WebAccess            = $Node.NodeName
-				SessionHost          = $Node.NodeName
+				WebAccess            = $hostName
+				SessionHost          = $hostName
 				Credential           = $DomainCred
 				DependsOn = "[WindowsFeature]Remote-Desktop-Services", "[WindowsFeature]RDS-RD-Server",$DependsOnAD
 			}
@@ -248,7 +248,7 @@ Node $NodeName {
 			{
 				ConnectionBroker =  $connectionBroker
 				Credential = $DomainCred
-				Gateway =  $Node.NodeName
+				Gateway =  $hostName
 				GatewayFQDN = "$($DomainName.Replace('.local','')).westeurope.cloudapp.azure.com"
 				DependsOn = "[cRDSessionDeployment]Deployment","[WindowsFeature]RDS-Gateway",$DependsOnAD
 			}
@@ -295,7 +295,7 @@ Node $NodeName {
 				Ensure = "Present"
 				Credential = $DomainCred
 				ConnectionBroker     = $connectionBroker
-				SessionHost          = $Node.NodeName
+				SessionHost          = $hostName
 				DependsOn = "[WindowsFeature]Remote-Desktop-Services", "[WindowsFeature]RDS-RD-Server",$DependsOnAD
 			}
 		}
