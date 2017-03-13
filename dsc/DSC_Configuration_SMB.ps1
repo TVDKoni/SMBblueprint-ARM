@@ -4,16 +4,35 @@
 [CmdletBinding()]
 
 Param (
+	[parameter()]
 	[string] $NodeName = $env:COMPUTERNAME,
+
+	[parameter()]
+	[ValidateNotNullOrEmpty()]
 	[string] $roleNames,
+
+	[parameter()]
+	[ValidateNotNullOrEmpty()]
 	[string] $connectionBroker,
+
+	[parameter()]
+	[ValidateNotNullOrEmpty()]
 	[string] $domainName,
+
+	[parameter()]
+	[ValidateNotNullOrEmpty()]
 	[System.Management.Automation.PSCredential]$domainAdminCredentials,
+
+	[parameter()]
+	[ValidateNotNullOrEmpty()]
 	[string] $OMSWorkSpaceId,
+
+	[parameter()]
+	[ValidateNotNullOrEmpty()]
 	[string] $OMSWorkSpaceKey
 )
 
-Import-DscResource -ModuleName PSDesiredStateConfiguration, xActiveDirectory,xComputerManagement,cRemoteDesktopServices,xCredSSP,xNetworking,xPSDesiredStateConfiguration
+Import-DscResource -ModuleName PSDesiredStateConfiguration,xActiveDirectory,xComputerManagement,cRemoteDesktopServices,xCredSSP,xNetworking,xPSDesiredStateConfiguration
 $DependsOnAD = ""
 $DomainCred = new-object pscredential "$domainName\$($domainAdminCredentials.UserName)",$domainAdminCredentials.Password
 $OSVersion = new-object Version ((Get-CimInstance Win32_OperatingSystem).version)

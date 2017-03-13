@@ -233,7 +233,6 @@
 							"OS": "[parameters('deploymentSettings').OS]",
 							"rdsConnectionBroker":"[parameters('deploymentSettings').rdsConnectionBroker]",
 							"infrastructureRoles":"[parameters('deploymentSettings').infrastructureRoles[variables('vmJumpbox').name]]"
-
 						}
 					},
 					"adminPassword": {
