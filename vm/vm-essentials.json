@@ -52,7 +52,7 @@
 		},
 		"resourceLocation": "[resourceGroup().location]",
 		"vmVariable": {
-			"storageAccountName": "[concat(parameters('NamingPrefix'),'strgvm', uniquestring(resourceGroup().id, parameters('vm').name))]",
+			"storageAccountName": "[take(concat(parameters('NamingPrefix'),'strgvm', uniquestring(resourceGroup().id, parameters('vm').name)),24)]",
 			"storageAccountType": "[parameters('vm').storageType]",
 			"vmStorageAccountContainerName": "vhds",
 			"imagePublisher": "MicrosoftWindowsServer",
