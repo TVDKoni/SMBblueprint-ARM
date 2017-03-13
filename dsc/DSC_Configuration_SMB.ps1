@@ -36,7 +36,7 @@ Import-DscResource -ModuleName PSDesiredStateConfiguration,xActiveDirectory,xCom
 $DependsOnAD = ""
 $DomainCred = new-object pscredential "$domainName\$($domainAdminCredentials.UserName)",$domainAdminCredentials.Password
 $OSVersion = new-object Version ((Get-CimInstance Win32_OperatingSystem).version)
-Node $AllNodes.NodeName {
+Node localhost {
 
 		LocalConfigurationManager
 		{
