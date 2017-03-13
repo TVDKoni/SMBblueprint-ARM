@@ -108,7 +108,7 @@ Node localhost {
 			Name = "ServerEssentialsRole"
 		}
 
-		if($roleNames -notcontains "DC-Primary")
+		if($roleNames -notlike "*DC-Primary*")
 		{
 			xComputer DomainJoin
 			{
@@ -121,7 +121,7 @@ Node localhost {
 			$DependsOnAD = "[xWaitForADDomain]WaitForDomain"
 		}
 
-		if($roleNames -contains "DC-Primary")
+		if($roleNames -like "*DC-Primary*")
 		{
 			WindowsFeature DNS_RSAT
 			{ 
@@ -183,7 +183,7 @@ Node localhost {
 			}
 		}
 
-		if($roleNames -contains "RDS-All")
+		if($roleNames -like "*RDS-All*")
 		{
 			WindowsFeature Remote-Desktop-Services
 			{
@@ -254,7 +254,7 @@ Node localhost {
 			}
 		}
 
-		if($roleNames -contains "RDS-Session")
+		if($roleNames -like "*RDS-Session*")
 		{
 			WindowsFeature Remote-Desktop-Services
 			{
