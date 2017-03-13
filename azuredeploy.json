@@ -249,7 +249,15 @@
 			"numberOfExtraServers": 0,
 			"infrastructureTemplate": "[concat(variables('baseTemplateUri'), 'infra/infrastructure-small.json')]",
 			"infrastructureRoles": {
-				"[concat(variables('NamingPrefix'),'serv001')]": "DC-Primary,RDS-All"
+				"[concat(variables('NamingPrefix'),'serv001')]": "DC-Primary,RDS-All",
+				"[concat(variables('NamingPrefix'),'serv002')]": "",
+				"[concat(variables('NamingPrefix'),'serv003')]": "",
+				"[concat(variables('NamingPrefix'),'serv004')]": "",
+				"[concat(variables('NamingPrefix'),'serv005')]": "",
+				"[concat(variables('NamingPrefix'),'serv006')]": "",
+				"[concat(variables('NamingPrefix'),'serv007')]": "",
+				"[concat(variables('NamingPrefix'),'serv008')]": "",
+				"[concat(variables('NamingPrefix'),'serv009')]": ""
 			}
 		},
 		"deploymentSize-medium": {
