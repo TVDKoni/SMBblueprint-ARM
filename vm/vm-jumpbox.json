@@ -57,9 +57,8 @@
 			"publicIPAddressName": "[concat(parameters('vm').name,'pip')]",
 			"publicIPAddressType": "Dynamic",
 			"networkInterfaceName": "[concat(parameters('vm').name,'nic')]",
-			"vmSize": "[parameters('vm').vmSize]",
-			"DataDisk": "ADDataDisk",
-			"DataDiskSize": 1000
+			"availabilitySetName": "[concat(parameters('vm').name,'avset')]",
+			"vmSize": "[parameters('vm').vmSize]"
 		},
 		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',parameters('vm').virtualNetworkName)]",
 		"subnetRef": "[concat(variables('vnetID'),'/subnets/',parameters('vm').virtualNetworkSubnetName)]"
@@ -76,6 +75,16 @@
 			"sku": {
 				"name": "Standard_LRS"
 			}
+		}, {
+            "type": "Microsoft.Compute/availabilitySets",
+            "name": "[variables('vmVariable').availabilitySetName]",
+            "apiVersion": "2015-06-15",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "platformUpdateDomainCount": 2,
+                "platformFaultDomainCount": 2
+            },
+            "dependsOn": []
 		}, {
 			"apiVersion": "[variables('apiVersion').network.publicIPAddresses]",
 			"type": "Microsoft.Network/publicIPAddresses",
@@ -117,6 +126,9 @@
 				"[concat('Microsoft.Network/networkInterfaces/', variables('vmVariable').networkInterfaceName)]"
 			],
 			"properties": {
+                "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', variables('vmVariable').availabilitySetName)]"
+                },
 				"hardwareProfile": {
 					"vmSize": "[variables('vmVariable').vmSize]"
 				},
