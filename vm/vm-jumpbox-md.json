@@ -46,7 +46,8 @@
 			},
 			"compute": {
 				"virtualMachines": "2016-04-30-preview",
-				"availabilitySet": "2016-04-30-preview"
+				"availabilitySet": "2016-04-30-preview",
+				"disks": "2016-04-30-preview"
 			}
 		},
 		"resourceLocation": "[resourceGroup().location]",
