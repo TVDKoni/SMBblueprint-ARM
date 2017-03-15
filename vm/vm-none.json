@@ -28,6 +28,9 @@
 		},
 		"baseTemplateUri": {
 			"type": "string"
+		},
+		"NamingPrefix": {
+			"type": "string"
 		}
 	},
 	"variables": {},
