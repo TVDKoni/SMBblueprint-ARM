@@ -159,9 +159,6 @@
 					},
 					"osDisk": {
 						"name": "[variables('vmVariable').osDiskName]",
-						"vhd": {
-							"uri": null
-						},
 						"caching": "ReadWrite",
 						"createOption": "FromImage"
 					},
