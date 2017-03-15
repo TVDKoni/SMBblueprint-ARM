@@ -6,11 +6,13 @@
 			"value": {
 				"name": "pdemoflxserv002",
 				"vmSize": "Standard_A1",
-				"virtualNetworkName": "client-vnet-default",
+				"virtualNetworkName": "pdemoflxvnet001",
 				"virtualNetworkSubnetName": "pdemoflxsnet001managementServices",
 				"adminUsername": "sysadmin",
-				"domainName": "client.local",
-				"domainUsername": "domainsysadmin"
+				"domainName": "tvddeploytest.local",
+				"domainUsername": "sysadmin",
+				"storageType": "Standard_LRS",
+				"OS": "2012R2"
 			}
 		},
 		"adminPassword": {
@@ -20,7 +22,13 @@
 			"value": "MySuperSecretPasswordThatNobodyKnows1*"
 		},
 		"workspaceName": {
-			"value": "sbs-oms-test"
+			"value": "pdemoflxomsw0013j34onssvgjem"
+		},
+		"baseTemplateUri": {
+			"value": "C:\\Data\\Source\\github.com\\SMBblueprint-ARM"
+		},
+		"NamingPrefix": {
+			"value": "pdemoflx"
 		}
 	}
 }

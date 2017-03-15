@@ -6,11 +6,11 @@
 			"value": {
 				"name": "pdemoflxserv002",
 				"vmSize": "Standard_A1",
-				"virtualNetworkName": "client-vnet-default",
+				"virtualNetworkName": "pdemoflxvnet001",
 				"virtualNetworkSubnetName": "pdemoflxsnet001managementServices",
 				"adminUsername": "sysadmin",
-				"domainName": "client.local",
-				"domainUsername": "domainsysadmin"
+				"domainName": "tvddeploytest.local",
+				"domainUsername": "sysadmin"
 			}
 		},
 		"adminPassword": {
@@ -20,7 +20,7 @@
 			"value": "MySuperSecretPasswordThatNobodyKnows1*"
 		},
 		"workspaceName": {
-			"value": "sbs-oms-test"
+			"value": "pdemoflxomsw001xxxxx"
 		}
 	}
 }

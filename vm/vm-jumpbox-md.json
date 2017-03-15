@@ -45,9 +45,9 @@
 				"storageAccounts": "2016-01-01"
 			},
 			"compute": {
-				"virtualMachines": "2015-06-15"
-			},
-			"availabilitySet": "2015-06-15"
+				"virtualMachines": "2016-04-30-preview",
+				"availabilitySet": "2016-04-30-preview"
+			}
 		},
 		"resourceLocation": "[resourceGroup().location]",
 		"vmVariable": {
@@ -82,7 +82,7 @@
 		}, {
             "type": "Microsoft.Compute/availabilitySets",
             "name": "[variables('vmVariable').availabilitySetName]",
-            "apiVersion": "[variables('apiVersion').availabilitySet]",
+			"apiVersion": "[variables('apiVersion').compute.availabilitySet]",
             "location": "[resourceGroup().location]",
             "properties": {
                 "platformUpdateDomainCount": 2,
@@ -95,7 +95,7 @@
         }, {
 			"type": "Microsoft.Compute/disks",
 			"name": "[variables('vmVariable').osDiskName]",
-			"apiVersion": "2016-04-30-preview",
+			"apiVersion": "[variables('apiVersion').compute.disks]",
 			"location": "[resourceGroup().location]",
 			"properties": {
 				"creationData": {
