@@ -246,6 +246,9 @@
 					},
 					"baseTemplateUri": {
 						"value": "[variables('baseTemplateUri')]"
+					},
+					"NamingPrefix": {
+						"value": "[parameters('NamingPrefix')]"
 					}
 				}
 			}
