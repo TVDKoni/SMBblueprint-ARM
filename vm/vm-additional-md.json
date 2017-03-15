@@ -89,8 +89,23 @@
                 "platformUpdateDomainCount": 2,
                 "platformFaultDomainCount": 2
             },
+			"sku": {
+				"name": "Aligned"
+			},
             "dependsOn": []
         }, {
+			"type": "Microsoft.Compute/disks",
+			"name": "[variables('vmVariable').osDiskName]",
+			"apiVersion": "2016-04-30-preview",
+			"location": "[resourceGroup().location]",
+			"properties": {
+				"creationData": {
+					"createOption": "Empty"
+				},
+				"accountType": "[variables('vmVariable').storageAccountType]",
+				"diskSizeGB": 128
+			}
+		}, {
 			"apiVersion": "[variables('apiVersion').network.publicIPAddresses]",
 			"type": "Microsoft.Network/publicIPAddresses",
 			"name": "[variables('vmVariable').publicIPAddressName]",
@@ -131,6 +146,7 @@
 			},
 			"dependsOn": [
 				"[concat('Microsoft.Storage/storageAccounts/', variables('vmVariable').storageAccountName)]",
+				"[concat('Microsoft.Compute/disks/', variables('vmVariable').osDiskName)]",
                 "[concat('Microsoft.Compute/availabilitySets/', variables('vmVariable').availabilitySetName)]",
 				"[concat('Microsoft.Network/networkInterfaces/', variables('vmVariable').networkInterfaceName)]"
 			],
@@ -158,9 +174,13 @@
 						"version": "latest"
 					},
 					"osDisk": {
-						"name": "[variables('vmVariable').osDiskName]",
+						"osType": "Windows",
 						"caching": "ReadWrite",
-						"createOption": "FromImage"
+						"createOption": "FromImage",
+						"name": "[variables('vmVariable').osDiskName]",
+						"managedDisk": {
+							"storageAccountType": "[variables('vmVariable').storageAccountType]"
+						}
 					},
 					"dataDisks": [
 					]
