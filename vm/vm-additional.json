@@ -47,7 +47,8 @@
 			},
 			"compute": {
 				"virtualMachines": "2015-06-15"
-			}
+			},
+			"availabilitySet": "2015-06-15"
 		},
 		"resourceLocation": "[resourceGroup().location]",
 		"vmVariable": {
@@ -82,7 +83,7 @@
 		}, {
             "type": "Microsoft.Compute/availabilitySets",
             "name": "[variables('vmVariable').availabilitySetName]",
-            "apiVersion": "2015-06-15",
+            "apiVersion": "[variables('apiVersion').availabilitySet]",
             "location": "[resourceGroup().location]",
             "properties": {
                 "platformUpdateDomainCount": 2,
@@ -130,6 +131,7 @@
 			},
 			"dependsOn": [
 				"[concat('Microsoft.Storage/storageAccounts/', variables('vmVariable').storageAccountName)]",
+                "[concat('Microsoft.Compute/availabilitySets/', variables('vmVariable').availabilitySetName)]",
 				"[concat('Microsoft.Network/networkInterfaces/', variables('vmVariable').networkInterfaceName)]"
 			],
 			"properties": {

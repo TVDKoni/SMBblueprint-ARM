@@ -61,7 +61,7 @@
 			"properties": {
 				"mode": "Incremental",
 				"templateLink": {
-					"uri": "[concat(variables('baseTemplateUri'),'vm/vm-essentials.json' )]",
+					"uri": "[concat(variables('baseTemplateUri'),'vm/vm-essentials', parameters('deploymentSettings').managedDisksTemplateSuffix, '.json')]",
 					"contentVersion": "1.0.0.0"
 				},
 				"parameters": {
@@ -135,7 +135,7 @@
 			"properties": {
 				"mode": "Incremental",
 				"templateLink": {
-					"uri": "[concat(variables('baseTemplateUri'),'vm/vm-additional.json')]",
+					"uri": "[concat(variables('baseTemplateUri'),'vm/vm-additional', parameters('deploymentSettings').managedDisksTemplateSuffix, '.json')]",
 					"contentVersion": "1.0.0.0"
 				},
 				"parameters": {
@@ -216,7 +216,7 @@
 			"properties": {
 				"mode": "Incremental",
 				"templateLink": {
-					"uri": "[concat(variables('baseTemplateUri'),'vm/vm-jumpbox.json')]",
+					"uri": "[concat(variables('baseTemplateUri'),'vm/vm-jumpbox', parameters('deploymentSettings').managedDisksTemplateSuffix, '.json')]",
 					"contentVersion": "1.0.0.0"
 				},
 				"parameters": {

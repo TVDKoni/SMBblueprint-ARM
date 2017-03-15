@@ -6,16 +6,16 @@
 			"value": {
 				"name": "client-vnet-flarge",
 				"addressPrefix": "10.3.0.0/16",
-				"managementSubnetName": "sn-management",
+				"managementSubnetName": "pdemoflxsnet001managementServices",
 				"managementSubnetAddressPrefix": "10.3.1.0/24",
-				"managementNetworkSecurityGroupName": "nsg-management",
+				"managementNetworkSecurityGroupName": "pdemoflxnscg001managementServices",
 				"gatewaySubnetAddressPrefix": "10.3.9.0/24",
 				"dmzSubnetName": "sn-dmz",
 				"dmzSubnetAddressPrefix": "10.3.2.0/24",
-				"dmzNetworkSecurityGroupName": "nsg-dmz",
+				"dmzNetworkSecurityGroupName": "pdemoflxnscg001dmzServices",
 				"emergencySubnetName": "sn-emergency",
 				"emergencySubnetAddressPrefix": "10.3.3.0/24",
-				"emergencyNetworkSecurityGroupName": "nsg-emergency"
+				"emergencyNetworkSecurityGroupName": "pdemoflxnscg001emergencyServices"
 			}
 		}
 	}

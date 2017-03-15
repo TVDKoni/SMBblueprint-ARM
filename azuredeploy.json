@@ -10,6 +10,14 @@
 			],
 			"defaultValue": "no"
 		},
+		"useManagedDisks": {
+			"type": "string",
+			"allowedValues": [
+				"yes",
+				"no"
+			],
+			"defaultValue": "no"
+		},
 		"fallbackLocation": {
 			"type": "string",
 			"allowedValues": [
@@ -179,6 +187,8 @@
 	"variables": {
 		"fallbackLocation-yes": "[parameters('fallbackLocation')]",
 		"fallbackLocation-no": "[resourceGroup().location]",
+		"useManagedDisks-yes": "-md",
+		"useManagedDisks-no": "",
 		"baseTemplateUri": "[replace(string(deployment().properties.templateLink.uri),'azuredeploy.json','')]",
 		"customerName": "[parameters('customerName')]",
 		"NamingEnv": "[parameters('NamingEnv')]",
@@ -242,7 +252,8 @@
 			"storageType": "[parameters('storageType')]",
 			"OS": "[variables('OSVersion')[parameters('OSVersion')]]",
 			"rdsConnectionBroker": "[concat(variables('NamingPrefix'),'serv001')]",
-			"infrastructureRoles": "[variables(concat('deploymentSize-', parameters('CustomerSize'))).infrastructureRoles]"
+			"infrastructureRoles": "[variables(concat('deploymentSize-', parameters('CustomerSize'))).infrastructureRoles]",
+			"managedDisksTemplateSuffix": "[variables(concat('useManagedDisks-',parameters('useManagedDisks')))]",
 		},
 		"deploymentSize-small": {
 			"vmSize": "Standard_DS1_v2",
@@ -360,12 +371,12 @@
 			"vmSize": ""
 		},
 		"vmAdditionalSize-small": {
-			"template": "[concat(variables('baseTemplateUri'), 'vm/vm-additional.json')]",
+			"template": "[concat(variables('baseTemplateUri'), 'vm/vm-additional', variables('deploymentSettings').managedDisksTemplateSuffix, '.json')]",
 			"omsRecoveryServicesTemplate": "[variables(concat('omsRecoveryServicesVaultTemplate-',parameters('backupEnabled'))).onboarding]",
 			"vmSize": "Standard_DS1_v2"
 		},
 		"vmAdditionalSize-medium": {
-			"template": "[concat(variables('baseTemplateUri'), 'vm/vm-additional.json')]",
+			"template": "[concat(variables('baseTemplateUri'), 'vm/vm-additional', variables('deploymentSettings').managedDisksTemplateSuffix, '.json')]",
 			"omsRecoveryServicesTemplate": "[variables(concat('omsRecoveryServicesVaultTemplate-',parameters('backupEnabled'))).onboarding]",
 			"vmSize": "Standard_DS2_v2"
 		},
@@ -400,7 +411,7 @@
 			"omsRecoveryServicesVault": "[variables('omsRecoveryServicesVaultTemplates').recoveryServicesVault]",
 			"omsRecoveryServicesOnboarding": "[variables('omsRecoveryServicesVaultTemplates').onboarding]",
 			"omsAutomationAccount": "[concat(variables('baseTemplateUri'), 'oms/omsAutomationAccount-',parameters('managementEnabled'),'.json')]",
-			"vmPrimary": "[concat(variables('baseTemplateUri'), 'vm/vm-essentials.json')]"
+			"vmPrimary": "[concat(variables('baseTemplateUri'), 'vm/vm-essentials', variables('deploymentSettings').managedDisksTemplateSuffix, '.json')]"
 		}
 	},
 	"resources": [{

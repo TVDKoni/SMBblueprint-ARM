@@ -6,9 +6,9 @@
 			"value": {
 				"name": "client-vnet-fmedium",
 				"addressPrefix": "10.3.0.0/16",
-				"managementSubnetName": "sn-management",
+				"managementSubnetName": "pdemoflxsnet001managementServices",
 				"managementSubnetAddressPrefix": "10.3.1.0/24",
-				"managementNetworkSecurityGroupName": "nsg-management",
+				"managementNetworkSecurityGroupName": "pdemoflxnscg001managementServices",
 				"gatewaySubnetAddressPrefix": "10.3.9.0/24"
 			}
 		}

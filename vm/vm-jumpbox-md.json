@@ -28,14 +28,9 @@
 		},
 		"baseTemplateUri": {
 			"type": "string"
-		},
-		"NamingPrefix": {
-			"type": "string"
 		}
 	},
 	"variables": {
-		"baseTemplateUri": "[parameters('baseTemplateUri')]",
-		"domainName": "[parameters('vm').domainName]",
 		"apiVersion": {
 			"network": {
 				"virtualNetwork": "2016-03-30",
@@ -79,7 +74,7 @@
 				"DisplayName": "[concat('STA - storage for VM ',parameters('vm').name)]"
 			},
 			"sku": {
-				"name": "[variables('vmVariable').storageAccountType]"
+				"name": "Standard_LRS"
 			}
 		}, {
             "type": "Microsoft.Compute/availabilitySets",
@@ -97,10 +92,7 @@
 			"name": "[variables('vmVariable').publicIPAddressName]",
 			"location": "[resourceGroup().location]",
 			"properties": {
-				"publicIPAllocationMethod": "[variables('vmVariable').publicIPAddressType]",
-				"dnsSettings": {
-					"domainNameLabel": "[tolower(replace(parameters('vm').domainName,'.local',''))]"
-				}
+				"publicIPAllocationMethod": "[variables('vmVariable').publicIPAddressType]"
 			}
 		}, {
 			"apiVersion": "[variables('apiVersion').network.networkInterfaces]",
@@ -130,9 +122,6 @@
 			"type": "Microsoft.Compute/virtualMachines",
 			"name": "[parameters('vm').name]",
 			"location": "[resourceGroup().location]",
-			"tags": {
-				"BusinessHours": "true"
-			},
 			"dependsOn": [
 				"[concat('Microsoft.Storage/storageAccounts/', variables('vmVariable').storageAccountName)]",
                 "[concat('Microsoft.Compute/availabilitySets/', variables('vmVariable').availabilitySetName)]",
@@ -148,7 +137,11 @@
 				"osProfile": {
 					"computerName": "[parameters('vm').name]",
 					"adminUsername": "[parameters('vm').adminUsername]",
-					"adminPassword": "[parameters('adminPassword')]"
+					"adminPassword": "[parameters('adminPassword')]",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    }
 				},
 				"storageProfile": {
 					"imageReference": {
@@ -160,7 +153,7 @@
 					"osDisk": {
 						"name": "[variables('vmVariable').osDiskName]",
 						"vhd": {
-							"uri": "[concat('http://',variables('vmVariable').storageAccountName,'.blob.core.windows.net/',variables('vmVariable').vmStorageAccountContainerName,'/',variables('vmVariable').osDiskName,'.vhd')]"
+							"uri": null
 						},
 						"caching": "ReadWrite",
 						"createOption": "FromImage"
@@ -210,46 +203,23 @@
 						"protectedSettings": null
 					}
 				}, {
-					"type": "Microsoft.Compute/virtualMachines/extensions",
-					"name": "[concat(parameters('vm').name,'/dscDCConfiguration')]",
+					"type": "extensions",
+					"name": "Microsoft.EnterpriseCloud.Monitoring",
 					"apiVersion": "[variables('apiVersion').compute.virtualMachines]",
 					"location": "[resourceGroup().location]",
-					"tags": {
-						"displayName": "dscDC"
-					},
 					"dependsOn": [
 						"[concat('Microsoft.Compute/virtualMachines/', parameters('vm').name)]"
 					],
 					"properties": {
-						"publisher": "Microsoft.PowerShell",
-						"type": "DSC",
-						"typeHandlerVersion": "2.9",
+						"publisher": "Microsoft.EnterpriseCloud.Monitoring",
+						"type": "MicrosoftMonitoringAgent",
+						"typeHandlerVersion": "1.0",
 						"autoUpgradeMinorVersion": true,
 						"settings": {
-							"configuration": {
-								"url": "[concat(variables('baseTemplateUri'),'dsc', '/DSC-SMB.zip')]",
-								"script": "DSC_Configuration_SMB.ps1",
-								"function": "SMB"
-							},
-							"configurationArguments": {
-								"hostName": "[parameters('vm').name]",
-								"domainName": "[parameters('vm').domainName]",
-								"roleNames": "[parameters('vm').infrastructureRoles]",
-								"connectionBroker": "[parameters('vm').rdsConnectionBroker]",
-								"OMSWorkSpaceId": "[reference(resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName')), '2015-03-20').customerId]"
-							},
-							"configurationData": {
-								"url": "[concat(variables('baseTemplateUri'),'dsc', '/DSC_Data_SMB.psd1')]"
-							}
+							"workspaceId": "[reference(resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName')), '2015-03-20').customerId]"
 						},
 						"protectedSettings": {
-							"configurationArguments": {
-								"domainAdminCredentials": {
-									"username": "[parameters('vm').adminUsername]",
-									"password": "[parameters('adminPassword')]"
-								},
-								"OMSWorkSpaceKey": "[listKeys(resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName')), '2015-03-20').primarySharedKey]"
-							}
+							"workspaceKey": "[listKeys(resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName')), '2015-03-20').primarySharedKey]"
 						}
 					}
 				}

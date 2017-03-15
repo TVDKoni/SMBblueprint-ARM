@@ -148,7 +148,11 @@
 				"osProfile": {
 					"computerName": "[parameters('vm').name]",
 					"adminUsername": "[parameters('vm').adminUsername]",
-					"adminPassword": "[parameters('adminPassword')]"
+					"adminPassword": "[parameters('adminPassword')]",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    }
 				},
 				"storageProfile": {
 					"imageReference": {
@@ -160,7 +164,7 @@
 					"osDisk": {
 						"name": "[variables('vmVariable').osDiskName]",
 						"vhd": {
-							"uri": "[concat('http://',variables('vmVariable').storageAccountName,'.blob.core.windows.net/',variables('vmVariable').vmStorageAccountContainerName,'/',variables('vmVariable').osDiskName,'.vhd')]"
+							"uri": null
 						},
 						"caching": "ReadWrite",
 						"createOption": "FromImage"

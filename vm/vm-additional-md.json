@@ -35,7 +35,6 @@
 	},
 	"variables": {
 		"baseTemplateUri": "[parameters('baseTemplateUri')]",
-		"domainName": "[parameters('vm').domainName]",
 		"apiVersion": {
 			"network": {
 				"virtualNetwork": "2016-03-30",
@@ -91,16 +90,13 @@
                 "platformFaultDomainCount": 2
             },
             "dependsOn": []
-		}, {
+        }, {
 			"apiVersion": "[variables('apiVersion').network.publicIPAddresses]",
 			"type": "Microsoft.Network/publicIPAddresses",
 			"name": "[variables('vmVariable').publicIPAddressName]",
 			"location": "[resourceGroup().location]",
 			"properties": {
-				"publicIPAllocationMethod": "[variables('vmVariable').publicIPAddressType]",
-				"dnsSettings": {
-					"domainNameLabel": "[tolower(replace(parameters('vm').domainName,'.local',''))]"
-				}
+				"publicIPAllocationMethod": "[variables('vmVariable').publicIPAddressType]"
 			}
 		}, {
 			"apiVersion": "[variables('apiVersion').network.networkInterfaces]",
@@ -148,7 +144,11 @@
 				"osProfile": {
 					"computerName": "[parameters('vm').name]",
 					"adminUsername": "[parameters('vm').adminUsername]",
-					"adminPassword": "[parameters('adminPassword')]"
+					"adminPassword": "[parameters('adminPassword')]",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    }
 				},
 				"storageProfile": {
 					"imageReference": {
@@ -160,7 +160,7 @@
 					"osDisk": {
 						"name": "[variables('vmVariable').osDiskName]",
 						"vhd": {
-							"uri": "[concat('http://',variables('vmVariable').storageAccountName,'.blob.core.windows.net/',variables('vmVariable').vmStorageAccountContainerName,'/',variables('vmVariable').osDiskName,'.vhd')]"
+							"uri": null
 						},
 						"caching": "ReadWrite",
 						"createOption": "FromImage"
