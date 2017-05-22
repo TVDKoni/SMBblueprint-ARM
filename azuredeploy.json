@@ -643,7 +643,7 @@
 						"value": "[concat(variables('NamingPrefix'),'serv00', add(variables('deploymentSettings').numberOfExtraServers, 2))]"
 					},
 					"backupPolicyName": {
-						"value": "[concat(variables('NamingPrefix'),'bkpp001')]",
+						"value": "[concat(variables('NamingPrefix'),'bkpp001')]"
 					},
 					"region": {
 						"value": "[variables('omsSettings').primaryRegion]"
